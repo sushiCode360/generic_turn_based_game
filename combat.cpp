@@ -62,13 +62,21 @@ void combat::outputQueue(){
 void combat::combatLoop(){
     //Stores character with turn currently
     character currentCharacter;
+    //Stores target
     character target;
+    //Tracks current turn
+    int turn = 1;
     
     std::cout << "Combat Engaged!" << std::endl;
 
     //Gameplay loop
     while(ongoing){
         updateCombat(); //Updates the turn queue
+
+        //Barriers to help visualize actions in current turn
+        std::cout << "======================================================================" << std::endl;
+        std::cout << "Turn: " << turn << std::endl;
+        
         while(!turnQueue.empty() && ongoing){
             outputHealthStates();
             currentCharacter = turnQueue.top(); //Sets top of queue to currentCharacter
@@ -98,6 +106,8 @@ void combat::combatLoop(){
                 std::cout << "Defeat...\n";
             }
         }
+        //Barriers to help visualize actions in current turn
+        std::cout << "======================================================================" << std::endl;
     }
 }
 
